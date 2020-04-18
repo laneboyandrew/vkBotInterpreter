@@ -26,8 +26,8 @@ $app->post('/bot', function () use ($app) {
     if ( $data->secret !== getenv('VK_SECRET_KEY') && $data->type !== 'confirmation')
         return "Getenv or dataType error";
 
-//    $tr = new GoogleTranslate('en', null);
-
+    $tr = new GoogleTranslate('en', null);
+    $message = $tr->translate($data['body']);
     switch ($data->type) {
         case 'confirmation':
             return getenv('VK_CONFIRAMTION_CODE');
@@ -36,7 +36,7 @@ $app->post('/bot', function () use ($app) {
         case 'message_new':
             $request_params = [
                 'user_id' => $data->object->user_id,
-                'message' => 'тест',
+                'message' => $message,
                 'access_token' => getenv('VK_TOKEN'),
                 'v' => '5.68'
             ];
