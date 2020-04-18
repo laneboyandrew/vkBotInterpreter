@@ -1,5 +1,7 @@
 <?php
 
+use Stichoza\GoogleTranslate\GoogleTranslate;
+
 require('../vendor/autoload.php');
 
 $app = new Silex\Application();
@@ -24,9 +26,11 @@ $app->post('/bot', function () use ($app) {
     if (!$data->secret !== getenv('VK_SECRET_KEY') && $data->type !== 'confirmation')
         return "Getenv or dataType error";
 
+//    $tr = new GoogleTranslate('en', null);
+
     switch ($data->type) {
         case 'confirmation':
-            return getenv('VK_CONFIRAMTION_CODE');
+            return getenv('VK_CONFIRMATION_CODE');
             break;
 
         case 'message_new':
