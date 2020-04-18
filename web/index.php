@@ -28,6 +28,7 @@ $app->post('/bot', function () use ($app) {
 
     $tr = new GoogleTranslate('en', null);
     $message = $tr->translate($data['body']);
+    print_r($data);
     switch ($data->type) {
         case 'confirmation':
             return getenv('VK_CONFIRAMTION_CODE');
