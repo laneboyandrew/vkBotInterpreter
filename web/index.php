@@ -35,7 +35,7 @@ $app->post('/bot', function () use ($app) {
 
         case 'message_new':
             $request_params = [
-                'user_id' => $data->object->userId,
+                'user_id' => $data->object->user_id,
                 'message' => 'тест',
                 'access_token' => getenv('VK_TOKEN'),
                 'v' => '5.68'
