@@ -19,7 +19,7 @@ $app->get('/', function () use ($app) {
 });
 
 $app->post('/bot', function () use ($app) {
-    $data = json_decode(file_get_contents('php://input', true));
+    $data = json_decode(file_get_contents('php://input'));
     if (!$data) {
         return "Missed data";
     }
@@ -27,8 +27,8 @@ $app->post('/bot', function () use ($app) {
         return "Getenv or dataType error";
 
     $tr = new GoogleTranslate('en', null);
-    $message = $tr->translate($data['body']);
-    print_r($data);
+    $message = $tr->translate($data->object->body);
+
     switch ($data->type) {
         case 'confirmation':
             return getenv('VK_CONFIRAMTION_CODE');
