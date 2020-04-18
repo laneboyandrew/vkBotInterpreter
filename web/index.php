@@ -23,7 +23,7 @@ $app->post('/bot', function () use ($app) {
     if (!$data) {
         return "Missed data";
     }
-    if (!$data->secret !== getenv('VK_SECRET_KEY') && $data->type !== 'confirmation')
+    if ( $data->secret !== getenv('VK_SECRET_KEY') && $data->type !== 'confirmation')
         return "Getenv or dataType error";
 
 //    $tr = new GoogleTranslate('en', null);
