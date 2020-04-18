@@ -19,13 +19,13 @@ $app->get('/', function () use ($app) {
 });
 
 $app->post('/bot', function () use ($app) {
-    $data = json_decode(file_get_contents('php://input'));
+    $data = json_decode(file_get_contents('php://input', true));
     if (!$data) {
         return "Missed data";
     }
     if ( $data->secret !== getenv('VK_SECRET_KEY') && $data->type !== 'confirmation')
         return "Getenv or dataType error";
-    print_r($data);
+
     $tr = new GoogleTranslate('en', null);
     $message = $tr->translate($data['body']);
     print_r($data);
